@@ -63,7 +63,9 @@ const Order = () => {
         refetch();
         toast.success("Order is paid");
       } catch (error) {
-        toast.error(error?.data?.message || error.message);
+        toast.error(
+          error?.data?.message || error?.message || "Server not available",
+        );
       }
     });
   }
@@ -79,7 +81,7 @@ const Order = () => {
   }
 
   function onError(err) {
-    toast.error(err.message);
+    toast.error(err?.message || "Payment error");
   }
 
   const deliverHandler = async () => {
